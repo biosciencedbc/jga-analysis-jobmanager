@@ -1,0 +1,67 @@
+{
+        "name": "aaabbb",
+    "samplelist": [
+        {
+            "sampleid": "XX10000",
+            "platform": "Illumina NovaSeq6000",
+            "runlist": [
+                {
+                    "runid": "hello runid1",
+                    "data": {
+                        "se_or_pe": "PE",
+                        "fq1": "LICENSE",
+                        "fq2": "LICENSE"
+                    }
+                },
+                {
+                    "runid": "hello runid2",
+                    "data": {
+                        "se_or_pe": "SE",
+                        "fq1": "lemon",
+                        "fq1_MD5": "aa"
+                    }
+                },
+                {
+                    "runid": "hello runid3",
+                    "data": {
+                        "se_or_pe": "PE",
+                        "fq1": "LICENSE",
+                        "fq1_MD5": "86d3f3a95c324c9479bd8986968f4327",
+                        "fq2": "LICENSE",
+                        "fq2_MD5": "86d3f3a95c324c9479bd8986968f4327"
+                    }
+                }
+            ]
+        },
+        {
+            "sampleid": "XX10001",
+            "platform": "Illumina HiSeq2000",
+            "runlist": [
+                {
+                    "runid": "hello runid4",
+                    "data": {
+                        "se_or_pe": "SE",
+                        "fq1": "LICENSE"
+                    }
+                },
+                {
+                    "runid": "hello runid5",
+                    "data": {
+                        "se_or_pe": "SE",
+                        "fq1": "LICENSE",
+                        "fq1_MD5": "aa"
+                    }
+                },
+                {
+                    "runid": "hello runid6",
+                    "data": {
+                        "se_or_pe": "PE",
+                        "fq1": "LICENSE",
+                        "fq1_MD5": "86d3f3a95c324c9479bd8986968f4327",
+                        "fq2": "lemon"
+                    }
+                }
+            ]
+        }
+    ]
+}

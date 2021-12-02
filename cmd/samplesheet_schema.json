@@ -1,0 +1,116 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "name": {
+        "description": "Name of the customer",
+        "type": "string",
+        "pattern": "^[A-Za-z0-9 ]+$"
+      },
+      "pe":{
+        "$id": "#pe",
+        "description": "Pair End",
+        "type": "object",
+        "properties": {
+          "se_or_pe": {
+            "description": "For Pair End",
+            "type": "string",
+            "enum": [
+              "PE"
+            ]
+          },
+          "fq1": {
+            "description": "File path PE_1",
+            "type": "string"
+          },
+          "fq1_MD5": {
+            "description": "File path PE_1 MD5",
+            "type": "string"
+          },
+          "fq2": {
+            "description": "File path PE_2",
+            "type": "string"
+          },
+          "fq2_MD5": {
+            "description": "File path PE_2 MD5",
+            "type": "string"
+          }
+        },
+        "required": [ "se_or_pe", "fq1", "fq2" ]
+      },
+      "se":{
+        "$id": "#se",
+        "description": "Single End",
+        "type": "object",
+        "properties": {
+          "se_or_pe": {
+            "description": "For Single End",
+            "type": "string",
+            "enum": [
+              "SE"
+            ]
+          },
+          "fq1": {
+            "description": "File Path SE_1",
+            "type": "string"
+          },
+          "fq1_MD5": {
+            "description": "File path SE_1 MD5",
+            "type": "string"
+          }
+        },
+        "required": [ "se_or_pe", "fq1" ]
+      },
+      "se_or_pe_data":{
+        "description": "enum for SE or PE",
+        "type": "object",
+        
+        "oneOf": [{ "$ref": "#se" }, { "$ref": "#pe" }]
+      },
+      "run": {
+          "type": "object",
+          "properties": {
+            "runid": {
+                "description": "run id",
+                "type": "string"
+            },
+            "data": {
+                "$ref": "#/properties/se_or_pe_data"
+            }
+          },
+          "required": ["runid", "data"]
+      },
+      "sample": {
+        "type": "object",
+        "properties": {
+          "sampleid": {
+              "description": "sample id",
+              "type": "string"
+          },
+          "platform": {
+            "description": "platform",
+            "type": "string"
+        },
+        "runlist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/properties/run"
+            }
+          }
+        },
+        "required": ["sampleid","platform", "runlist"]
+    },
+    "samplelist": {
+      "type": "array",
+      "items": {
+        "$ref": "#/properties/sample"
+      }
+
+    }
+
+  },
+
+  "required": [
+      "samplelist"
+  ]
+}
