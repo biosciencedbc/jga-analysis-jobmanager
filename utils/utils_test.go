@@ -89,20 +89,6 @@ func Test_IsExistsAllResultFilesPrefixSampleId_filesize_zero(t *testing.T) {
 
 }
 
-func Test_IsExistsAllResultFilesPrefixRunId_success(t *testing.T) {
-	result := IsExistsAllResultFilesPrefixRunId("../test/resultfile/success/XX00000", "YYY0000000")
-
-	assert.True(t, result, "All files MUST be exists")
-
-}
-
-func Test_IsExistsAllResultFilesPrefixRunId_fail_runid_bam(t *testing.T) {
-	result := IsExistsAllResultFilesPrefixRunId("../test/resultfile/fail_runid_bam/XX00000", "YYY0000000")
-
-	assert.False(t, result, "YYY0000000.bam is missing")
-
-}
-
 func Test_BuildVersionString_local(t *testing.T) {
 	result := BuildVersionString("dev", "", "")
 
