@@ -58,8 +58,28 @@
         "description": "",
         "type": "string"
       },
-      "cores": {
-        "description": "",
+      "fastq2bam_ram_min": {
+        "description": "size of RAM for fastq2bam",
+        "type": "integer"
+      },
+      "fastq2bam_cores_min": {
+        "description": "number of cores for fastq2bam",
+        "type": "integer"
+      },
+      "bams2cram_ram_min": {
+        "description": "size of RAM for bams2cram",
+        "type": "integer"
+      },
+      "bams2cram_cores_min": {
+        "description": "number of cores for bams2cram",
+        "type": "integer"
+      },
+      "haplotypecaller_ram_min": {
+        "description": "size of RAM for haplotypecaller",
+        "type": "integer"
+      },
+      "haplotypecaller_cores_min": {
+        "description": "number of cores for haplotypecaller",
         "type": "integer"
       },
       "bwa_bases_per_batch": {
@@ -187,7 +207,12 @@
       "reference",
       "sortsam_max_records_in_ram",
       "sortsam_java_options",
-      "cores",
+      "fastq2bam_ram_min",
+      "fastq2bam_cores_min",
+      "bams2cram_ram_min",
+      "bams2cram_cores_min",
+      "haplotypecaller_ram_min",
+      "haplotypecaller_cores_min",
       "bwa_bases_per_batch",
       "use_bqsr",
       "dbsnp",
