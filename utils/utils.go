@@ -57,7 +57,12 @@ type ReferenceSchema struct {
 	Reference               *PathOnlyObject `json:"reference"`
 	SortsamMaxRecordsInRam  int             `json:"sortsam_max_records_in_ram"`
 	SortsamJavaOptions      string          `json:"sortsam_java_options"`
-	Cores                   int             `json:"cores"`
+	Fastq2bamRamMin         int             `json:"fastq2bam_ram_min"`
+	Fastq2bamCoresMin       int             `json:"fastq2bam_cores_min"`
+	Bams2cramRamMin         int             `json:"bams2cram_ram_min"`
+	Bams2cramCoresMin       int             `json:"bams2cram_cores_min"`
+	HaplotypecallerRamBin   int             `json:"haplotypecaller_ram_min"`
+	HaplotypecallerCoresMin int             `json:"haplotypecaller_cores_min"`
 
 	BwaBasesPerBatch                       int             `json:"bwa_bases_per_batch"`
 	UseBqsr                                bool            `json:"use_bqsr"`
@@ -96,7 +101,12 @@ func outputReference(rss *ReferenceSchema) (string, error) {
 	byteBuf.WriteString("  format: http://edamontology.org/format_1929\n")
 	byteBuf.WriteString(fmt.Sprintf("sortsam_max_records_in_ram: %d\n", rss.SortsamMaxRecordsInRam))
 	byteBuf.WriteString(fmt.Sprintf("sortsam_java_options: %s\n", rss.SortsamJavaOptions))
-	byteBuf.WriteString(fmt.Sprintf("cores: %d\n", rss.Cores))
+	byteBuf.WriteString(fmt.Sprintf("fastq2bam_ram_min: %d\n", rss.Fastq2bamRamMin))
+	byteBuf.WriteString(fmt.Sprintf("fastq2bam_cores_min: %d\n", rss.Fastq2bamCoresMin))
+	byteBuf.WriteString(fmt.Sprintf("bams2cram_ram_min: %d\n", rss.Bams2cramRamMin))
+	byteBuf.WriteString(fmt.Sprintf("bams2cram_cores_min: %d\n", rss.Bams2cramCoresMin))
+	byteBuf.WriteString(fmt.Sprintf("haplotypecaller_ram_min: %d\n", rss.HaplotypecallerRamBin))
+	byteBuf.WriteString(fmt.Sprintf("haplotypecaller_cores_min: %d\n", rss.HaplotypecallerCoresMin))
 	byteBuf.WriteString(fmt.Sprintf("bwa_bases_per_batch: %d\n", rss.BwaBasesPerBatch))
 	byteBuf.WriteString(fmt.Sprintf("use_bqsr: %t\n", rss.UseBqsr))
 	byteBuf.WriteString("dbsnp:\n")
