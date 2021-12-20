@@ -495,18 +495,6 @@ func CheckRunDataFile(fn string, fnmd5 string, fileExistsCheckFlag bool, fileHas
 	return result, nil
 }
 
-func IsExistsAllResultFilesPrefixRunId(outputDirectoryPath string, runId string) bool {
-	result := true
-	fn := filepath.Join(outputDirectoryPath, runId)
-	for _, extension := range []string{".bam", ".bam.log"} {
-		if _, err := os.Stat(fn + extension); os.IsNotExist(err) {
-			fmt.Printf("Missing file [%s]\n", fn+extension)
-			result = false
-		}
-
-	}
-	return result
-}
 func IsExistsAllResultFilesPrefixSampleId(outputDirectoryPath string, sampleId string) bool {
 	result := true
 	fn := filepath.Join(outputDirectoryPath, sampleId)
@@ -517,7 +505,6 @@ func IsExistsAllResultFilesPrefixSampleId(outputDirectoryPath string, sampleId s
 		".autosome_PAR_ploidy_2.g.vcf.gz.tbi",
 		".autosome_PAR_ploidy_2.g.vcf.gz.tbi.log",
 		".autosome_PAR_ploidy_2.g.vcf.log",
-		".bam.log",
 		".chrX_nonPAR_ploidy_1.g.vcf.gz",
 		".chrX_nonPAR_ploidy_1.g.vcf.gz.bcftools-stats",
 		".chrX_nonPAR_ploidy_1.g.vcf.gz.bcftools-stats.log",
@@ -620,13 +607,6 @@ func CheckAllResultFiles(outputDirectoryPath string, s *Sample) bool {
 		check1 := IsExistsAllResultFilesPrefixSampleId(outputDirectoryPath, s.SampleId)
 		if !check1 {
 			allExists = false
-		}
-		// RunID prefix files check
-		for _, r := range s.RunList {
-			check2 := IsExistsAllResultFilesPrefixRunId(outputDirectoryPath+"/"+s.SampleId, r.RunId)
-			if !check2 {
-				allExists = false
-			}
 		}
 	}
 	return allExists
@@ -753,13 +733,6 @@ func CreateExecuteSampleIDList(outputDirectoryPath string, ss *SimpleSchema) []s
 			check1 := IsExistsAllResultFilesPrefixSampleId(outputDirectoryPath, s.SampleId)
 			if !check1 {
 				isExecute = true
-			}
-			// RunID prefix files check
-			for _, r := range s.RunList {
-				check2 := IsExistsAllResultFilesPrefixRunId(outputDirectoryPath+"/"+s.SampleId, r.RunId)
-				if !check2 {
-					isExecute = true
-				}
 			}
 		}
 		if isExecute {
