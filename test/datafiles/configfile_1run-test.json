@@ -13,7 +13,12 @@
     },
     "sortsam_max_records_in_ram": 5000000,
     "sortsam_java_options": "-XX:-UseContainerSupport -Xmx30g",
-    "cores": 16,
+    "fastq2bam_ram_min": 48000,
+    "fastq2bam_cores_min": 16,
+    "bams2cram_ram_min": 48000,
+    "bams2cram_cores_min": 6,
+    "haplotypecaller_ram_min": 48000,
+    "haplotypecaller_cores_min": 6,
     "bwa_bases_per_batch": 10000000,
     "use_bqsr": false,
     "dbsnp": {
