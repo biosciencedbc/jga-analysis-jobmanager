@@ -19,7 +19,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
 
 	"github.com/jinzhu/copier"
 	"github.com/manabuishiii/jgaworkflowspecchecker/utils"
@@ -62,7 +61,7 @@ func init() {
 }
 func copyFiles(outputDirectoryPath string, samplesheet_data_file string, config_data_file string) bool {
 	// copy sample_sheet file
-	sampleSheetDst := outputDirectoryPath + "/" + filepath.Base(samplesheet_data_file)
+	sampleSheetDst := outputDirectoryPath + "/" + "samplesheet.json"
 	// check sample sheet file is same
 	if IsSameFilePath(samplesheet_data_file, sampleSheetDst) {
 		fmt.Println("Sample sheet file is in output directory backup file. So do not copy")
@@ -86,7 +85,7 @@ func copyFiles(outputDirectoryPath string, samplesheet_data_file string, config_
 		}
 	}
 	// copy config file
-	configFileDst := outputDirectoryPath + "/" + filepath.Base(config_data_file)
+	configFileDst := outputDirectoryPath + "/" + "configfile.json"
 	// check config file is same
 	if IsSameFilePath(config_data_file, configFileDst) {
 		fmt.Println("Config file is in output directory backup file. So do not copy")
