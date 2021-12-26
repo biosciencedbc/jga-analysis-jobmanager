@@ -51,18 +51,22 @@ type PathOnlyObject struct {
 }
 
 type ReferenceSchema struct {
-	WorkflowFile            *PathOnlyObject `json:"workflow_file"`
-	OutputDirectory         *PathOnlyObject `json:"output_directory"`
-	ContainerCacheDirectory *PathOnlyObject `json:"container_cache_directory"`
-	Reference               *PathOnlyObject `json:"reference"`
-	SortsamMaxRecordsInRam  int             `json:"sortsam_max_records_in_ram"`
-	SortsamJavaOptions      string          `json:"sortsam_java_options"`
-	Fastq2bamRamMin         int             `json:"fastq2bam_ram_min"`
-	Fastq2bamCoresMin       int             `json:"fastq2bam_cores_min"`
-	Bams2cramRamMin         int             `json:"bams2cram_ram_min"`
-	Bams2cramCoresMin       int             `json:"bams2cram_cores_min"`
-	HaplotypecallerRamBin   int             `json:"haplotypecaller_ram_min"`
-	HaplotypecallerCoresMin int             `json:"haplotypecaller_cores_min"`
+	WorkflowFile                     *PathOnlyObject `json:"workflow_file"`
+	OutputDirectory                  *PathOnlyObject `json:"output_directory"`
+	ContainerCacheDirectory          *PathOnlyObject `json:"container_cache_directory"`
+	Reference                        *PathOnlyObject `json:"reference"`
+	SortsamMaxRecordsInRam           int             `json:"sortsam_max_records_in_ram"`
+	SortsamJavaOptions               string          `json:"sortsam_java_options"`
+	GATK4MarkDuplicatesJavaOptions   string          `json:"gatk4_MarkDuplicates_java_options"`
+	GATK4BaseRecalibratorJavaOptions string          `json:"gatk4_BaseRecalibrator_java_options"`
+	Gatk4ApplyBQSRJavaOptions        string          `json:"gatk4_ApplyBQSR_java_options"`
+	Gatk4HaplotypeCallerJavaOptions  string          `json:"gatk4_HaplotypeCaller_java_options"`
+	Fastq2bamRamMin                  int             `json:"fastq2bam_ram_min"`
+	Fastq2bamCoresMin                int             `json:"fastq2bam_cores_min"`
+	Bams2cramRamMin                  int             `json:"bams2cram_ram_min"`
+	Bams2cramCoresMin                int             `json:"bams2cram_cores_min"`
+	HaplotypecallerRamBin            int             `json:"haplotypecaller_ram_min"`
+	HaplotypecallerCoresMin          int             `json:"haplotypecaller_cores_min"`
 
 	BwaBasesPerBatch                       int             `json:"bwa_bases_per_batch"`
 	UseBqsr                                bool            `json:"use_bqsr"`
@@ -101,6 +105,10 @@ func outputReference(rss *ReferenceSchema) (string, error) {
 	byteBuf.WriteString("  format: http://edamontology.org/format_1929\n")
 	byteBuf.WriteString(fmt.Sprintf("sortsam_max_records_in_ram: %d\n", rss.SortsamMaxRecordsInRam))
 	byteBuf.WriteString(fmt.Sprintf("sortsam_java_options: %s\n", rss.SortsamJavaOptions))
+	byteBuf.WriteString(fmt.Sprintf("gatk4_MarkDuplicates_java_option: %s\n", rss.GATK4MarkDuplicatesJavaOptions))
+	byteBuf.WriteString(fmt.Sprintf("gatk4_BaseRecalibrator_java_options: %s\n", rss.GATK4BaseRecalibratorJavaOptions))
+	byteBuf.WriteString(fmt.Sprintf("gatk4_ApplyBQSR_java_options: %s\n", rss.Gatk4ApplyBQSRJavaOptions))
+	byteBuf.WriteString(fmt.Sprintf("gatk4_HaplotypeCaller_java_options: %s\n", rss.Gatk4HaplotypeCallerJavaOptions))
 	byteBuf.WriteString(fmt.Sprintf("fastq2bam_ram_min: %d\n", rss.Fastq2bamRamMin))
 	byteBuf.WriteString(fmt.Sprintf("fastq2bam_cores_min: %d\n", rss.Fastq2bamCoresMin))
 	byteBuf.WriteString(fmt.Sprintf("bams2cram_ram_min: %d\n", rss.Bams2cramRamMin))
