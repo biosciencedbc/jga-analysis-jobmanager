@@ -6,7 +6,7 @@ before:
     - go mod tidy
 builds:
   - main: .
-    binary: jgaanalysisjobmanager
+    binary: jajm
     ldflags:
       - -s -w
       - -X github.com/manabuishiii/jgaworkflowspecchecker/cmd.Version={{.Version}}
