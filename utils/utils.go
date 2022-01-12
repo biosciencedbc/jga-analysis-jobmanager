@@ -670,6 +670,14 @@ func ExecCWL(sample *Sample, rss *ReferenceSchema, currentTime string) string {
 	// TODO support docker
 	scriptEnv = append(scriptEnv, "CWL_SINGULARITY_CACHE="+rss.ContainerCacheDirectory.Path)
 	c1.Env = scriptEnv
+	// output execute command and environment
+	toilcommandfile, _ := os.Create(jobManagerDirectory + "/toil.command.txt")
+	defer toilcommandfile.Close()
+	// write to toilcommandfile
+	toilcommandfile.WriteString("toil-cwl-runner ")
+	toilcommandfile.WriteString(strings.Join(c1.Args, " "))
+	toilcommandfile.WriteString("\n\n")
+	toilcommandfile.WriteString(strings.Join(c1.Env, "\n"))
 	// Currently do not set other environment value by JobManager
 	//
 	stdoutfile, _ := os.Create(jobManagerDirectory + "/toil.stdout.txt")
